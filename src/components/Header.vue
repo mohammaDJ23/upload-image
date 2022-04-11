@@ -1,5 +1,5 @@
 <template>
-  <div>Image storage</div>
+  <div class="ui secondary pointing menu"><a href="/" class="active item">Image storage</a></div>
 </template>
 
 <script>
