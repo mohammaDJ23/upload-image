@@ -1,11 +1,12 @@
+import qs from 'qs';
 import api from '../../api/imgur';
 
 const state = {
-  token: null,
+  token: window.localStorage.getItem('imgur_token'),
 };
 
 const getters = {
-  isLoggedId: state => !!state.token,
+  isLoggedIn: state => !!state.token,
 };
 
 const mutations = {
@@ -17,10 +18,18 @@ const mutations = {
 const actions = {
   logout: ({ commit }) => {
     commit('setToken', null);
+    window.localStorage.removeItem('imgur_token');
   },
 
   login: () => {
     api.login();
+  },
+
+  finalizeLogin: ({ commit }, hashUrl) => {
+    const queries = qs.parse(hashUrl.replace('#', ''));
+
+    commit('setToken', queries.access_token || null);
+    window.localStorage.setItem('imgur_token', queries.access_token);
   },
 };
 

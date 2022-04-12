@@ -1,6 +1,10 @@
 <template>
   <div>
     <Header />
+
+    <!-- to work routes in main.js file -->
+
+    <router-view></router-view>
   </div>
 </template>
 
