@@ -2,11 +2,17 @@ import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import App from './App';
 import AuthHandler from './components/AuthHandler';
+import UploadForm from './components/UploadForm';
+import ImageList from './components/ImageList';
 import store from './store';
 
-const router = createRouter({
+export const router = createRouter({
   history: createWebHistory(),
-  routes: [{ path: '/oauth2/callback', component: AuthHandler }],
+  routes: [
+    { path: '/', component: ImageList },
+    { path: '/upload', component: UploadForm },
+    { path: '/oauth2/callback', component: AuthHandler },
+  ],
 });
 
 const app = createApp(App);
